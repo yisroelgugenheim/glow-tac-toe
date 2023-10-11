@@ -1,0 +1,43 @@
+
+body {
+background-color: rgb(255, 255, 255);
+}
+.board {
+background-color: rgb(255, 255, 255);
+display: grid;
+grid-template-columns: repeat(3, 150px);
+grid-gap: 2px;
+width: 450px;
+margin: 50px auto;
+padding: 10px;
+
+
+}
+
+.cell {
+    width: 150px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+
+  }
+
+#win-status {
+  width: 150px;
+  height: 150px;
+  cursor: pointer;
+  font-size: x-large;
+  font-family: sans-serif;
+}
+
+button {
+  width: 150px;
+  height: 30px;
+  cursor: pointer;
+  font-size: large;
+  font-family: fantasy;
+  }
