@@ -4,37 +4,56 @@ let currentPlayer = 'X'
 let otherPlayer = ''
 
 // handle clicks
+function clickHandle() {
 for(let cell of cells){
     cell.addEventListener('click',()=> {
+        if(wins() !== true){
     if(cell.innerText === ''){
     cell.innerText = currentPlayer;
     if (currentPlayer === 'X') {
         currentPlayer = 'O'
-        otherPlayer = 'X'
+        // otherPlayer = 'X'
  }
-    else {
-        currentPlayer = 'X'
-        otherPlayer = 'O'
-    }}
-// handle wins
-    if(wins()) {
-      stat.innerText = `${otherPlayer} wins! Good game! Restart to play again.`
-      currentPlayer = ''
-      }
+    else { currentPlayer = 'X'
+        // otherPlayer = 'O'
+        }
+     }
+    }
   })
-}
 
+ }
+} clickHandle()
+
+// handle wins
+function winHandle() {
+for (let cell of cells) {
+    cell.addEventListener('click', ()=> {
+     if(wins() && currentPlayer === 'X') {
+          stat.innerText = `'O' wins! Good game! Restart to play again.`
+          currentPlayer = ''
+        } else if(wins() && currentPlayer === 'O') {stat.innerText = `'X' wins! Good game! Restart to play again.`
+        currentPlayer = ''
+        }
+    })
+  }
+}  winHandle()
+
+// restart game
 function restartGame() {
 let button = document.querySelector('button')
 check = button.addEventListener('click', ()=> {
 for(let cell of cells) {
     cell.innerText = ''
     stat.innerText = ''
+    currentPlayer = 'X'
 }   wins() = false
+
+
 })
 
 } restartGame()
 
+// function checks for winner
 function wins() {
 function XWins(){
     return (cells[0].innerText === 'X' && cells[1].innerText === 'X' && cells[2].innerText === 'X'
@@ -59,8 +78,11 @@ function OWins(){
  }
 
 
-
-
+function checkDraw() {
+    for(let cell of cells) {
+        return cell.innerText !== ''
+    }
+}
 
 
 
