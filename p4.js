@@ -1,41 +1,41 @@
 const cells = document.querySelectorAll('.cell')
 const stat = document.getElementById('win-status')
 let currentPlayer = 'X'
-
-
-
+let otherPlayer = ''
 
 // handle clicks
 for(let cell of cells){
     cell.addEventListener('click',()=> {
     if(cell.innerText === ''){
     cell.innerText = currentPlayer;
-    if (currentPlayer === 'X') { currentPlayer = 'O'}
-    else { currentPlayer = 'X'}}
+    if (currentPlayer === 'X') {
+        currentPlayer = 'O'
+        otherPlayer = 'X'
+ }
+    else {
+        currentPlayer = 'X'
+        otherPlayer = 'O'
+    }}
 // handle wins
-    if(XWins()) {
-      stat.innerText = 'X wins! Good game! Restart to play again.'
+    if(wins()) {
+      stat.innerText = `${otherPlayer} wins! Good game! Restart to play again.`
       currentPlayer = ''
-    } else if(OWins()) {
-        stat.innerText = 'O wins!! Good game! Restart to play again.'
-        currentPlayer = ''
       }
-   })
+  })
 }
 
 function restartGame() {
 let button = document.querySelector('button')
 check = button.addEventListener('click', ()=> {
-
 for(let cell of cells) {
     cell.innerText = ''
     stat.innerText = ''
-}   XWins() = false
-    OWins() = false
+}   wins() = false
 })
+
 } restartGame()
 
-
+function wins() {
 function XWins(){
     return (cells[0].innerText === 'X' && cells[1].innerText === 'X' && cells[2].innerText === 'X'
  || cells[3].innerText === 'X' && cells[4].innerText === 'X' && cells[5].innerText === 'X'
@@ -45,9 +45,8 @@ function XWins(){
  || cells[2].innerText === 'X' && cells[5].innerText === 'X' && cells[8].innerText === 'X'
  || cells[0].innerText === 'X' && cells[4].innerText === 'X' && cells[8].innerText === 'X'
  || cells[2].innerText === 'X' && cells[4].innerText === 'X' && cells[6].innerText === 'X')
- }
-
- function OWins(){
+ } if(XWins()){return true}
+function OWins(){
  return (cells[0].innerText === 'O' && cells[1].innerText === 'O' && cells[2].innerText === 'O'
  || cells[3].innerText === 'O' && cells[4].innerText === 'O' && cells[5].innerText === 'O'
  || cells[6].innerText === 'O' && cells[7].innerText === 'O' && cells[8].innerText === 'O'
@@ -56,8 +55,8 @@ function XWins(){
  || cells[2].innerText === 'O' && cells[5].innerText === 'O' && cells[8].innerText === 'O'
  || cells[0].innerText === 'O' && cells[4].innerText === 'O' && cells[8].innerText === 'O'
  || cells[2].innerText === 'O' && cells[4].innerText === 'O' && cells[6].innerText === 'O')
+ } if (OWins()){return true}
  }
-
 
 
 
