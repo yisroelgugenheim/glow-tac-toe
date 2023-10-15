@@ -24,8 +24,8 @@ for(let cell of cells){
  }
 } clickHandle()
 
-// handle wins
-function winHandle() {
+// handle wins and draw
+function gameOver() {
 for (let cell of cells) {
     cell.addEventListener('click', ()=> {
      if(wins() && currentPlayer === 'X') {
@@ -33,10 +33,10 @@ for (let cell of cells) {
           currentPlayer = ''
         } else if(wins() && currentPlayer === 'O') {stat.innerText = `'X' wins! Good game! Restart to play again.`
         currentPlayer = ''
-        }
+        } else if (wins !== true && draw() === true){stat.innerText = 'Its a draw! Restart to play again.'}
     })
   }
-}  winHandle()
+}  gameOver()
 
 // restart game
 function restartGame() {
@@ -46,9 +46,7 @@ for(let cell of cells) {
     cell.innerText = ''
     stat.innerText = ''
     currentPlayer = 'X'
-}   wins() = false
-
-
+}
 })
 
 } restartGame()
@@ -77,24 +75,20 @@ function OWins(){
  } if (OWins()){return true}
  }
 
-
-function checkDraw() {
+ // checks for a draw
+function draw() {
     for(let cell of cells) {
-        return cell.innerText !== ''
-    }
-}
+        if(cell.innerText === '') {
+            return false
+        }
+    } return true
+    } draw()
 
 
 
 
 
-
-
-
-
-
-// for(let cell of cells){board.push(cell)}
-// let board = [];
+// for referrence only:
 // const wins = [
 //     [0,1,2], [3,4,5], [6,7,8],
 //     [0,3,6], [1,4,7], [2,5,8],
@@ -102,17 +96,3 @@ function checkDraw() {
 
 
 
-// function tester(){
-//     if(currentPlayer === 'X'){
-//         return true
-//     } else {return false}
-// }
-// console.log(tester())
-
-// if(tester() === true) {
-//     console.log('HI!')
-// }
-
-// let i = 0;
-// while(i < cells.length){board.push((cells[i].innerText))
-// i++}
