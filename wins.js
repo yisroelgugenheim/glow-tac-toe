@@ -1,2 +1,0 @@
-cells = document.querySelectorAll('.cell')
-

@@ -1,56 +1,85 @@
 const cells = document.querySelectorAll('.cell')
 const stat = document.getElementById('win-status')
+const startButton = document.getElementById('start-game')
+const audio = new Audio('creativeminds.mp3')
+const pause = document.getElementById('pause')
 let currentPlayer = 'X'
 let otherPlayer = ''
+let gameStarted = false
+let pauseMusic = false
+audio.volume = 0.08
+stat.innerText = 'have fun playing!'
 
+function newGame() {
+startButton.addEventListener('click', ()=> {
+    gameStarted = true
+    for(let cell of cells) {
+        cell.innerText = ''
+         stat.innerText = 'have fun playing!'
+        // stat.innerText = `X, go first`
+        stat.style.color = '#014359'
+        currentPlayer = 'X'
+        if(pauseMusic !== true) {
+         audio.play()
+        }
+     }
+  })
+}
+newGame()
+
+pause.addEventListener('click', ()=> {
+    if(audio.paused) {
+        audio.play()
+        pauseMusic = false
+    } else {
+      audio.pause()
+      pauseMusic = true
+    }
+})
 // handle clicks
 function clickHandle() {
 for(let cell of cells){
     cell.addEventListener('click',()=> {
+        if(gameStarted){
         if(wins() !== true){
-    if(cell.innerText === ''){
+        if(cell.innerText === ''){
     cell.innerText = currentPlayer;
     if (currentPlayer === 'X') {
         currentPlayer = 'O'
-        // otherPlayer = 'X'
- }
-    else { currentPlayer = 'X'
-        // otherPlayer = 'O'
+        cell.style.color = '#0FFF90'
+        stat.style.color = 'white'
+        otherPlayer = 'X'
+    }   else {
+         currentPlayer = 'X'
+        cell.style.color = 'white'
+        stat.style.color = '#0FFF90'
+        otherPlayer = 'O'
         }
+        stat.innerText = `${currentPlayer}, it's your turn!`
      }
     }
+    }
   })
-
- }
+}
 } clickHandle()
-
 // handle wins and draw
 function gameOver() {
 for (let cell of cells) {
     cell.addEventListener('click', ()=> {
      if(wins() && currentPlayer === 'X') {
-          stat.innerText = `'O' wins! Good game! Restart to play again.`
+          stat.style.color = 'white'
+          stat.innerText = `O wins! Good game!`
           currentPlayer = ''
-        } else if(wins() && currentPlayer === 'O') {stat.innerText = `'X' wins! Good game! Restart to play again.`
-        currentPlayer = ''
-        } else if (wins !== true && draw() === true){stat.innerText = 'Its a draw! Restart to play again.'}
+        } else if(wins() && currentPlayer === 'O') {
+            stat.style.color = '#0FFF90'
+            stat.innerText = `'X' wins! Good game! `
+            currentPlayer = ''
+        } else if (wins !== true && draw() === true){
+            stat.style.color = 'gold'
+            stat.innerText = 'Its a draw! Good game!'}
     })
   }
 }  gameOver()
-
-// restart game
-function restartGame() {
-let button = document.querySelector('button')
-check = button.addEventListener('click', ()=> {
-for(let cell of cells) {
-    cell.innerText = ''
-    stat.innerText = ''
-    currentPlayer = 'X'
-}
-})
-
-} restartGame()
-
 // function checks for winner
 function wins() {
 function XWins(){
@@ -74,9 +103,8 @@ function OWins(){
  || cells[2].innerText === 'O' && cells[4].innerText === 'O' && cells[6].innerText === 'O')
  } if (OWins()){return true}
  }
-
  // checks for a draw
-function draw() {
+function draw() {      //loops over each cell and will only return true if not a single cell equals empty
     for(let cell of cells) {
         if(cell.innerText === '') {
             return false
@@ -88,6 +116,20 @@ function draw() {
 
 
 
+
+// const volumeUpButton = document.getElementById('louder');
+// const volumeDownButton = document.getElementById('lower');
+// audio.volume = 0.08; // Set an initial volume
+// volumeUpButton.addEventListener('click', () => {
+//     if (audio.volume < 1) {
+//         audio.volume += 0.1; // Increase by 10%
+//     }
+// });
+// volumeDownButton.addEventListener('click', () => {
+//     if (audio.volume > 0) {
+//         audio.volume -= 0.1; // Decrease by 10%
+//     }
+// });
 // for referrence only:
 // const wins = [
 //     [0,1,2], [3,4,5], [6,7,8],
