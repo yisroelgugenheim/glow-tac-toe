@@ -1,16 +1,21 @@
 
 body {
 background-color: rgb(13, 13, 13);
-/* background-image: url('goldbg.jpg'); */
+
+/* display: flex;
+justify-content: center;
+align-items: center;
+min-height: 100vh;
+margin: 0;  */
+
 }
 .board {
 
-/* background-color: rgb(255, 255, 255); */
-display: grid;
-grid-template-columns: repeat(3, 150px);
-width: 450px;
-margin: 0 auto;
-padding: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 150px);
+  width: 450px;
+  margin: -30px auto 0;
+  padding: 0;
 }
 
 .cell {
@@ -27,8 +32,6 @@ padding: 0 auto;
   }
 
 #win-status {
-  /* width: 40px;
-  height: 40px; */
   font-size: 40px;
   font-family: fantasy;
   margin-top: 50px;
