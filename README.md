@@ -6,7 +6,7 @@ with a glow-in-the-dark theme.
 You can play the game here https://dark-n-glow.netlify.app
 
 #### Features
-Glow-in-the-Dark Theme: Enjoy a visually stunning experience with glow-in-the-dark elements.<br>
+Glow-in-the-Dark Theme: Enjoy a stunning experience with glow-in-the-dark elements.<br>
 Simple and Fun: Classic gameplay with a visually modern twist.
 
 #### Gameplay:
