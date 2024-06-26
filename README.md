@@ -3,7 +3,7 @@
 This project implements a classic Tic-Tac-Toe game using HTML, CSS, and JavaScript, <br>
 with a glow-in-the-dark theme.
 
-You can play the game here https://dark-n-glow.netlify.app
+You can play the game here https://glow-tac-toe.netlify.app
 
 #### Features
 Glow-in-the-Dark Theme: Enjoy a stunning experience with glow-in-the-dark elements.<br>
